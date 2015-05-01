@@ -1,0 +1,23 @@
+{
+  "name": "express-demo",
+  "version": "1.0.0-alpha",
+  "description": "Does nothing important",
+  "main": "serve.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coolaj86/fake.git"
+  },
+  "author": "AJ ONeal <coolaj86@gmail.com> (http://coolaj86.com/)",
+  "license": "Apache2",
+  "bugs": {
+    "url": "https://github.com/coolaj86/fake/issues"
+  },
+  "homepage": "https://github.com/coolaj86/fake#readme",
+  "dependencies": {
+    "express": "^4.12.3"
+  }
+}
