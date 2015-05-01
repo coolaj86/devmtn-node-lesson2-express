@@ -17,6 +17,9 @@ app.get('/api/bye', function (request, response) {
 server.on('request', app);
 
 server.on('listening', function () {
-  console.log('ready to accept requests');
+  console.log(
+    'ready to accept requests at '
+  + server.address().address + ':' + server.address().port
+  );
 });
 server.listen(3080);
