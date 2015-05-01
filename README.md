@@ -47,3 +47,11 @@ npm install --save 'express@4.x'
 # add the line `, "start": "node ./app.js"`
 # which enables `npm start`
 ```
+
+Extra Credit
+============
+
+* HTTPS https://coolaj86.com/articles/how-to-create-a-csr-for-https-tls-ssl-rsa-pems/
+* cURL https://twitter.com/coolaj86/status/593651511927836672
+* netcat https://coolaj86.com/articles/intro-to-networking-with-netcat-and-nodejs.html
+* more express https://coolaj86.com/articles/intro-to-http-with-netcat-node-connect.html

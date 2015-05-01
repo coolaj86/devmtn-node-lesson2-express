@@ -1,25 +1,61 @@
 'use strict';
 
-var http = require('http');
 var express = require('express');
-var server;
 var app = express();
 
-server = http.createServer();
+// CORS will become important 
+app.use('/api', function (req, res, next) {
+  if ('OPTIONS' === req.method) {
+    res.header('Access-Control-Allow-Origin' , '*');
+    res.header(
+      'Access-Control-Allow-Methods'
+    , 'OPTIONS, GET, POST, PATCH, PUT, DELETE'
+    );
+    res.header(
+      'Access-Control-Allow-Headers'
+    , 'Origin, X-Requested-With, Content-Type, Accept'
+    );
+
+    res.end();
+    return;
+  }
+
+  next();
+});
+
+// This is the same as body
+// app.use('/api', require('body-parser')());
+app.use('/api', function (request, response, next) {
+  if ('POST' !== request.method) {
+    next();
+    return;
+  }
+
+  var postBody = '';
+  request.on('data', function (chunk) {
+    postBody += chunk.toString('utf8');
+  });
+  request.on('end', function () {
+    request.body = JSON.parse(postBody || '{}');
+    next();
+  });
+});
 
 // Routing
-app.get('/api/hello', function (request, response) {
+// 
+app.get('/api/static/hello', function (request, response) {
   response.send({ message: "hello" });
 });
-app.get('/api/bye', function (request, response) {
-  response.send({ message: "bye" });
-});
-server.on('request', app);
 
-server.on('listening', function () {
-  console.log(
-    'ready to accept requests at '
-  + server.address().address + ':' + server.address().port
-  );
+app.get('/api/dynamic', function (request, response) { 
+  response.send({ message: 'hello' });
 });
-server.listen(3080);
+
+app.get('/api/dynamic/:message', function (request, response) { 
+  var msg = request.param('message');
+  response.send({ message: msg });
+});
+
+app.use('/', function (req, res) {
+  res.send(req.body || { message: 'no body and route not found' });
+});
