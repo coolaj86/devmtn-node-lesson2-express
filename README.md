@@ -18,6 +18,8 @@ Usage
 npm start
 ```
 
+When the server starts you will be able to visit it at http://localhost:3080.
+
 How we did it
 =============
 
