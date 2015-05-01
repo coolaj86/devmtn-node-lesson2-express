@@ -115,6 +115,8 @@ app.get('/api/dynamic/:message', function (request, response) {
 app.use('/', function (req, res) {
   res.send(req.body || { message: 'no body and route not found' });
 });
+
+module.exports = app;
 ```
 
 Our Application Server
